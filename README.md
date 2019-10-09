@@ -29,3 +29,5 @@ This branch contains:
 14)Added Spring developer tools
 
 15)Added Sping boot actuator to collect metrics for service end points
+
+16)Added Test Cases for Service, Repository and Controller
