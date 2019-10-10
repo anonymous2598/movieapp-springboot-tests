@@ -4,7 +4,6 @@ import com.stackroute.movieservice.domain.MovieInfo;
 import com.stackroute.movieservice.exceptions.MovieAlreadyExists;
 import com.stackroute.movieservice.exceptions.MovieDoesNotExist;
 import com.stackroute.movieservice.repository.MovieRepository;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,7 +61,7 @@ MovieServiceImpl movieService;
         MovieInfo savedMovie = movieService.saveMovieInfo(movieInfo);
         //Assert.assertEquals(user,savedUser);
 
-       doThrow(new MovieAlreadyExists()).when(movieRepository).findById(eq(Integer.toUnsignedLong(101)));
+       doThrow(new MovieAlreadyExists()).when(movieRepository).findById(eq(Integer.toUnsignedLong(1)));
        movieService.saveMovieInfo(movieInfo);
 
     }
