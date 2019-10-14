@@ -8,6 +8,8 @@ import com.stackroute.movieservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -30,7 +32,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public MovieInfo saveMovieInfo(MovieInfo movieInfo) throws MovieAlreadyExists {
+    public MovieInfo saveMovieInfo(MovieInfo movieInfo) throws MovieAlreadyExists, SQLException {
         if(movieRepository.existsById(movieInfo.getMovieId()))
         {
             throw new MovieAlreadyExists("Movie already exists!");
@@ -45,7 +47,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public boolean deleteMovieInfo(Long repoId) throws MovieDoesNotExist {
+    public boolean deleteMovieInfo(Long repoId) throws MovieDoesNotExist,SQLException {
         if(movieRepository.existsById(repoId))
         {
             movieRepository.deleteById(repoId);
@@ -59,7 +61,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public MovieInfo updateMovieInfo(MovieInfo movieInfo) throws MovieDoesNotExist {
+    public MovieInfo updateMovieInfo(MovieInfo movieInfo) throws MovieDoesNotExist,SQLException {
         if(movieRepository.existsById(movieInfo.getMovieId()))
         {
             return movieRepository.save(movieInfo);
@@ -71,7 +73,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<MovieInfo> getMovieInfoByName(String movieName) throws MovieDoesNotExist {
+    public List<MovieInfo> getMovieInfoByName(String movieName) throws MovieDoesNotExist,SQLException{
         List<MovieInfo> list;
 
         list= movieRepository.getMovieInfoByName(movieName);
